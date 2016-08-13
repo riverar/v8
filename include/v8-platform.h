@@ -101,6 +101,8 @@ class Platform {
    */
   virtual void CallIdleOnForegroundThread(Isolate* isolate, IdleTask* task) {
     // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    (void) isolate;
+    (void) task;
   }
 
   /**
@@ -108,6 +110,7 @@ class Platform {
    */
   virtual bool IdleTasksEnabled(Isolate* isolate) {
     // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    (void) isolate;
     return false;
   }
 
@@ -128,6 +131,7 @@ class Platform {
    * defined in CategoryGroupEnabledFlags.
    **/
   virtual const uint8_t* GetCategoryGroupEnabled(const char* name) {
+    (void) name;
     static uint8_t no = 0;
     return &no;
   }
@@ -138,6 +142,7 @@ class Platform {
    **/
   virtual const char* GetCategoryGroupName(
       const uint8_t* category_enabled_flag) {
+    (void) category_enabled_flag;
     static const char dummy[] = "dummy";
     return dummy;
   }
@@ -155,6 +160,17 @@ class Platform {
       const char* scope, uint64_t id, uint64_t bind_id, int32_t num_args,
       const char** arg_names, const uint8_t* arg_types,
       const uint64_t* arg_values, unsigned int flags) {
+    (void) phase;
+    (void) category_enabled_flag;
+    (void) name;
+    (void) scope;
+    (void) id;
+    (void) bind_id;
+    (void) num_args;
+    (void) arg_names;
+    (void) arg_types;
+    (void) arg_values;
+    (void) flags;
     return 0;
   }
 
@@ -163,7 +179,11 @@ class Platform {
    * the handle returned from AddTraceEvent().
    **/
   virtual void UpdateTraceEventDuration(const uint8_t* category_enabled_flag,
-                                        const char* name, uint64_t handle) {}
+                                        const char* name, uint64_t handle) {
+    (void) category_enabled_flag;
+    (void) name;
+    (void) handle;
+  }
 };
 
 }  // namespace v8
