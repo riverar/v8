@@ -44,6 +44,7 @@
     'v8_deprecation_warnings': 1,
     'v8_imminent_deprecation_warnings': 1,
     'msvs_multi_core_compile%': '1',
+    'msvs_multi_core_limit%': '',
     'mac_deployment_target%': '10.7',
     'ios_deployment_target%': '',
     'release_extra_cflags%': '',
@@ -933,7 +934,7 @@
             'Detect64BitPortabilityProblems': 'false',
             'conditions': [
               [ 'msvs_multi_core_compile', {
-                'AdditionalOptions': ['/MP'],
+                'AdditionalOptions': ['/MP<(msvs_multi_core_limit)'],
               }],
               ['component=="shared_library"', {
                 'ExceptionHandling': '1',  # /EHsc
